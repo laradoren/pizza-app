@@ -1,39 +1,39 @@
 {
   "expo": {
-    "name": "PizzaApp",
-    "slug": "PizzaApp",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "pizzaapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/images/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./assets/images/adaptive-icon.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+    "experiments": {
+      "typedRoutes": true
     },
+    "icon": "./assets/images/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
+    "name": "PizzaApp Alina",
+    "newArchEnabled": true,
+    "orientation": "portrait",
     "plugins": [
       "expo-router"
     ],
-    "experiments": {
-      "typedRoutes": true
+    "scheme": "pizzaapp",
+    "slug": "PizzaApp",
+    "splash": {
+      "backgroundColor": "#ffffff",
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain"
+    },
+    "userInterfaceStyle": "automatic",
+    "version": "1.0.0",
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/images/favicon.png",
+      "output": "static"
     }
   }
 }
