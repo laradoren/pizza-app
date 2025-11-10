@@ -9,13 +9,14 @@
       "predictiveBackGestureEnabled": false
     },
     "experiments": {
+      "tsConfigPath": true,
       "typedRoutes": true
     },
     "icon": "./assets/images/icon.png",
     "ios": {
       "supportsTablet": true
     },
-    "name": "PizzaApp Alina",
+    "name": "PizzaApp",
     "newArchEnabled": true,
     "orientation": "portrait",
     "plugins": [

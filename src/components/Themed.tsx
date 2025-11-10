@@ -3,9 +3,9 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, View as DefaultView } from 'react-native';
+import { FlatList as DefaultFlatList, Image as DefaultImage, Text as DefaultText, View as DefaultView } from 'react-native';
 
-import Colors from '@/src/constants/Colors';
+import Colors from '@constants/Colors';
 import { useColorScheme } from './useColorScheme';
 
 type ThemeProps = {
@@ -15,6 +15,8 @@ type ThemeProps = {
 
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
+export type ImageProps = ThemeProps & DefaultImage['props'];
+export type FlatListProps = ThemeProps & DefaultFlatList['props'];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -42,4 +44,18 @@ export function View(props: ViewProps) {
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function Image(props: ImageProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultImage style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function FlatList(props: FlatListProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultFlatList style={[{ backgroundColor }, style]} {...otherProps} />;
 }
