@@ -4,18 +4,22 @@ import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 type CartType = {
     items: CartItem[];
+    total: number;
     onAddItem: (product: Product, size: CartItem['size']) => void;
     updateQuantity: (itemId: string, amount: -1 | 1) => void;
 };
 
 const CartContext = createContext<CartType>({
     items: [],
+    total: 0,
     onAddItem: () => {},
     updateQuantity: () => {},
 });
 
 const CartProvider = ({children}: PropsWithChildren) => {
-    const [items, setItems] = useState<CartItem[]>([])
+    const [items, setItems] = useState<CartItem[]>([]);
+
+    const total = items.reduce((sum, item) => (sum += item.product.price * item.quantity), 0);
 
     const onAddItem = (product: Product, size: CartItem['size']) => {
         const existingItem = items.find((item) => item.product === product && item.size === size);
@@ -48,7 +52,7 @@ const CartProvider = ({children}: PropsWithChildren) => {
     };
 
     return (
-        <CartContext.Provider value={{items, onAddItem, updateQuantity}}>
+        <CartContext.Provider value={{items, total, onAddItem, updateQuantity}}>
             {children}
         </CartContext.Provider>
     )
