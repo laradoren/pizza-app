@@ -3,7 +3,7 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { FlatList as DefaultFlatList, Image as DefaultImage, Text as DefaultText, View as DefaultView } from 'react-native';
+import { FlatList as DefaultFlatList, Image as DefaultImage, Text as DefaultText, TextInput as DefaultTextInput, View as DefaultView } from 'react-native';
 
 import Colors from '@constants/Colors';
 import { useColorScheme } from './useColorScheme';
@@ -17,6 +17,7 @@ export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 export type ImageProps = ThemeProps & DefaultImage['props'];
 export type FlatListProps = ThemeProps & DefaultFlatList['props'];
+export type TextInputProps = ThemeProps & DefaultTextInput['props'];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -58,4 +59,11 @@ export function FlatList(props: FlatListProps) {
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return <DefaultFlatList style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function TextInput(props: TextInputProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultTextInput style={[{ backgroundColor }, style]} {...otherProps} />;
 }
