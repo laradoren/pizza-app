@@ -4,15 +4,19 @@ import { useCart } from '@/providers/CartProvider';
 import { PizzaSize } from '@/types';
 import products from '@assets/data/products';
 import { Image, Text, View } from '@components/Themed';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useColorScheme } from '@components/useColorScheme';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { Link, Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
+
 
 const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
 
 export default function ProductDetailsSreen() {
   const { id } = useLocalSearchParams();
   const [selectedSize, setSelectedSize] = useState<PizzaSize>(sizes[1]);
+    const colorScheme = useColorScheme();
 
   const { onAddItem } = useCart();
   const router = useRouter();
@@ -31,6 +35,21 @@ export default function ProductDetailsSreen() {
 
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{title: "Menu",     headerRight: () => (
+        <Link href={`/(admin)/menu/create?id=${id}`} asChild>
+          <Pressable>
+            {({ pressed }) => (
+              <FontAwesome
+                name="pencil"
+                size={20}
+                color={Colors[colorScheme ?? 'light'].tint}
+                style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+              />
+            )}
+          </Pressable>
+        </Link>
+        ),}}
+      />
       <Stack.Screen options={{title: product?.name}}/>
       <Image source={{uri: product?.image || defaultPizzaImage}} style={styles.image}/>
 
